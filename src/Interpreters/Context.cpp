@@ -3256,6 +3256,8 @@ ContextMutablePtr Context::getBackgroundContext() const
     if (!background_context) throw Exception(ErrorCodes::LOGICAL_ERROR, "There is no background context");
     /// TODO: temp tweak to support recursive handling of projections
     background_context->background_context = background_context;
+    /// TODO: temp tweak to support embedded selects
+    background_context->query_context = getQueryContext();
     return background_context;
 }
 
